@@ -1,54 +1,90 @@
-const products = [
+const jugadores = [
   { 
-      id: '1', 
-      name: 'iphone 12', 
-      price: 1000, 
-      category: 'celular', 
-      img:'https://www.apple.com/newsroom/images/product/iphone/standard/Apple_announce-iphone12pro_10132020.jpg.og.jpg?202108061040', 
+      id: '10', 
+      name: 'Messi', 
+      team: 'argentina', 
+      category: 'delantero', 
+      img:'https://res.cloudinary.com/fedexx/image/upload/v1662138097/after/Anotaci%C3%B3n_2022-09-02_133211_xvsvoy.png', 
       stock: 25, 
-      description:'Descripcion de Iphone 12'
+      description:'Quién no ama a Messi?'
   },
   { 
       id: '2', 
-      name: 'samsung s21', 
-      price: 800, 
-      category: 'celular', 
-      img:'https://cdn.pocket-lint.com/r/s/1200x630/assets/images/155378-phones-review-hands-on-samsung-galaxy-s21-ultra-image1-luae09ici4.JPG', 
+      name: 'Dibu Martinez', 
+      team: 'argentina', 
+      category: 'arquero', 
+      img:'https://res.cloudinary.com/fedexx/image/upload/v1662138096/after/Anotaci%C3%B3n_2022-09-02_133601_ie2tbo.png', 
       stock: 16, 
-      description:'Descripcion de Samsung s21'
+      description:'Arquero de argentina'
   },
   {   
       id: '3', 
-      name: 'Ipad 8va generacion', 
-      price: 1200, 
-      category: 'tablet', 
-      img:'https://medias.musimundo.com/medias/00406046-143516-143516-01-143516-01.jpg-size515?context=bWFzdGVyfGltYWdlc3w1MjI1MnxpbWFnZS9qcGVnfGhjMC9oYWMvMTAyODM0OTc0NTU2NDYvMDA0MDYwNDYtMTQzNTE2LTE0MzUxNl8wMS0xNDM1MTZfMDEuanBnX3NpemU1MTV8MzA0NmMzNGFhZjUwMDY2YjY5MjU0MjlkMGJlYWMxODAxZjE5ODJhZmJlOTczZThmZjE2NTQxMjU5NjE2OTA4Yw', 
+      name: 'Armani', 
+      team: 'argentina', 
+      category: 'arquero', 
+      img:'https://res.cloudinary.com/fedexx/image/upload/v1662138097/after/Anotaci%C3%B3n_2022-09-02_133336_wwuupf.png', 
       stock: 10, 
-      description:'Descripcion de Ipad'
+      description:'Arquero de argentina'
+  },
+  {   
+      id: '4', 
+      name: 'Neymar', 
+      team: 'brasil', 
+      category: 'delantero', 
+      img:'https://res.cloudinary.com/fedexx/image/upload/v1662138097/after/Anotaci%C3%B3n_2022-09-02_133855_bc1sz1.png', 
+      stock: 10, 
+      description:'delantero de brasil'
+  },
+  {   
+      id: '5', 
+      name: 'Mbappe', 
+      team: 'francia', 
+      category: 'delantero', 
+      img:'https://res.cloudinary.com/fedexx/image/upload/v1662138096/after/Anotaci%C3%B3n_2022-09-02_133954_megtds.png', 
+      stock: 10, 
+      description:'delantero de francia'
+  },
+  {   
+      id: '6', 
+      name: 'Leandro Paredes', 
+      team: 'argentina', 
+      category: 'defensor', 
+      img:'https://res.cloudinary.com/fedexx/image/upload/v1662138096/after/Anotaci%C3%B3n_2022-09-02_133743_chebbp.png', 
+      stock: 10, 
+      description:'defensor de argentina'
   }
 ]
 
 
-export const getProducts = () => {
+export const getJugadores = () => {
   return new Promise((resolve, reject) => {
       setTimeout(() => {
-          resolve(products)
-      }, 1000)
+          resolve(jugadores)
+      }, 5000)
   })
 }
 
-export const getProductsByCategory = (categoryId) => {
+export const getJugadoresByCategory = (categoryId) => {
   return new Promise((resolve, reject) => {
       setTimeout(() => {
-          resolve(products.filter(prod => prod.category === categoryId))
-      }, 500)
+          resolve(jugadores.filter(jugador => jugador.category === categoryId))
+      }, 5000)
   })
 }
 
-export const getProductById = (id) => {
+
+export const getJugadoresByTeam = (teamId) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(jugadores.filter(jugador => jugador.team === teamId ))
+    } , 2000)
+  })
+}
+
+export const getJugadorById = (id) => {
   return new Promise((resolve, reject) => {
       setTimeout(() => {
-          resolve(products.find(prod => prod.id === id))
-      }, 500)
+          resolve(jugadores.find(jugador => jugador.id === id))
+      }, 5000)
   })
 }

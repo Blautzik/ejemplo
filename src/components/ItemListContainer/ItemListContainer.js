@@ -1,36 +1,45 @@
 import React from 'react'
 import styles from '../../styles/ItemListContainer.module.css'
 import { useEffect, useState } from 'react'
-import { getProducts, getProductsByCategory } from '../../asyncmock'
+import { getJugadores,  getJugadoresByCategory , getJugadoresByTeam} from '../../asyncmock'
 import ItemList from '../ItemList/ItemList'
 import { useParams } from 'react-router-dom'
+import Loader from '../Loader/Loader'
 
 
 const ItemListContainer = ({greeting}) => {
-  const [products, setProducts] = useState([]);
-  const { categoryId } = useParams()
+  const [jugadores, setJugadores] = useState([]);
+  const [loading, setLoading] = useState(false)
+  const { teamId, categoryId } = useParams()
 
   useEffect(() => {
+    setLoading(true)
 
-    if(!categoryId){
-      getProducts().then(products => {
-        setProducts(products)
+    if(!teamId && !categoryId ){
+      getJugadores().then(jugadores => {
+        setJugadores(jugadores)
+        setLoading(false)
           })
     }
-    else{
-      getProductsByCategory(categoryId).then(products => {
-        setProducts(products)
+    else if(teamId){
+      getJugadoresByTeam(teamId).then(jugadores => {
+        setJugadores(jugadores)
+        setLoading(false)
       })
     }
-      
-  }, [categoryId])
-  
+    
+    else{
+      getJugadoresByCategory(categoryId).then(jugadores => {
+        setJugadores(jugadores)
+        setLoading(false)
+      })
+    }
 
+  }, [teamId, categoryId])
+  
   return (
     <div className={styles.container}>
-      <h1>{greeting}</h1>
-      <ItemList products={products}/>
-
+      {loading ? <Loader /> : <ItemList jugadores={jugadores}/> }
     </div>
   )
 }

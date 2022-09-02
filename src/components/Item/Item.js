@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import './Item.css'
 
-const Item = ({id, name, img, price}) => {
+const Item = ({id, name, img, team}) => {
   return (
     <article className="CardItem">
         <header className="Header">
@@ -15,7 +15,7 @@ const Item = ({id, name, img, price}) => {
         </picture>
         <section>
             <p className="Info">
-                Precio: ${price}
+                {team}
             </p>
         </section>           
         <footer className='ItemFooter'>

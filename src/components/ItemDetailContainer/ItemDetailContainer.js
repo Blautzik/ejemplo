@@ -1,26 +1,30 @@
 import { useState, useEffect} from 'react'
-import { getProductById } from '../../asyncmock'
+import { getJugadorById } from '../../asyncmock'
 import ItemDetail from '../ItemDetail/ItemDetail'
 import { useParams } from 'react-router-dom';
+import Loader from '../Loader/Loader';
 
 const ItemDetailContainer = () => {
-    const [product, setProduct] = useState()
-    const {productId} = useParams();
+    const [jugador, setJugador] = useState()
+    const [loading, setLoading] = useState(false)
+    const {jugadorId} = useParams();
 
     useEffect(() => {
-        getProductById(productId)
-            .then(product => {
-                setProduct(product)
+        setLoading(true)
+        getJugadorById(jugadorId)
+            .then(jugador => {
+                setJugador(jugador)
+                setLoading(false)
             })
             .catch(error => {
                 console.log(error)
+                setLoading(false)
             })
-    }, [productId])
+    }, [jugadorId])
 
     return (
         <div>
-            <h1>Detalle</h1>
-            <ItemDetail {...product}/>
+          {loading ? <Loader /> : <ItemDetail {...jugador}/> }
         </div>
     )
 }

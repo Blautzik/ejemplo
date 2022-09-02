@@ -1,16 +1,20 @@
-import ItemCount from "../ItemCount/ItemCount"
+import ItemCount from "../ItemCount/ItemCount";
 
-const ItemDetail = ({ name, stock }) => {
+const ItemDetail = ({ name, category, stock, team, img }) => {
   const handleOnAdd = (quantity) => {
-    alert(`Se agregaron ${quantity} ${name}`)
-  }
+    alert(`Se agregaron ${quantity} ${name}`);
+  };
 
   return (
     <div>
       <h1>{name}</h1>
-      <ItemCount stock={stock} onAdd={handleOnAdd}/>
+      <h2>{category}</h2>
+      <h2>{team}</h2>
+      <img src={img} alt="" />
+      <ItemCount stock={stock} onAdd={handleOnAdd} />
     </div>
-  )
-}
+  
+  );
+};
 
-export default ItemDetail
+export default ItemDetail;
